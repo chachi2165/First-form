@@ -4,10 +4,31 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+  <form onsubmit="return addMessage()">
     <section class="container">
       <h1 class="page-header">
         Add a message
       </h1>
+    <div>
+      <label>Message Box</label>
+      <textarea name="commentText" id="commentText"> </textarea>
+    </div>
+
+    <div>
+      <label>Created By</label>
+      <input type="textbox" name="createdBy" id="createdBy" >
+    </div>
+        
+    <div>
+      <label>Is Important</label>
+      <input type="checkbox" name="isImportant" id="isImportant" >
+    </div>
+
+    <div>
+      <input type="submit" value="submit">
+    </div>
+    <form>
+
     </section>
     <script type="text/javascript" src="js/shared.js"></script>
     <script type="text/javascript" src="js/add-message.js"></script>

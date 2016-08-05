@@ -4,11 +4,23 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+    <form>
     <section class="container">
       <h1 class="page-header">
         Edit message
       </h1>
+      <div>
+      <label> Message Box</label>
+      <textarea name="commentText" id="commentText"></textarea>
+      </div>
+      <div>  
+        <label><input type="checkbox" id="isImportant"> Important</label>
+      </div>
+       <div>
+        <input type="button" onclick="editMessage()" value="Edit Message">
+      </div>
     </section>
+    </form>
     <script type="text/javascript" src="js/shared.js"></script>
     <script type="text/javascript" src="js/edit-message.js"></script>
   </body>

@@ -1,12 +1,3 @@
-function getMessage() {
-  // TODO: your solution goes here
-}
-
-function editMessage() {
-  // TODO: your solution goes here
-  window.location.href = '/index.html';
-}
-
 var messageId = getQueryStringValue('messageId');
 
 if (messageId) {
@@ -27,5 +18,40 @@ if (messageId) {
   // But, you might want to use a confirm box somewhere else in your code
   // and I thought this might be handy. HINT HINT!
 }
+function getMessage() {
+  // TODO: your solution goes here
+    var xhttp= new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+   if (xhttp.readyState == 4 && xhttp.status == 200) {
+     var response = JSON.parse(xhttp.responseText);
+     document.getElementById('commentText').value = response.commentText;
+     document.getElementById('isImportant').checked = response.isImportant;
+   }
+  };
+    xhttp.open('GET',apiEndpointBase + "/" + messageId, true);
+    xhttp.setRequestHeader('Content-Type','application/json');
+    xhttp.send();
+  return false;
+}
 
+function editMessage() {
+  // TODO: your solution goes here
+  var xhttp= new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+   if (xhttp.readyState == 4 && xhttp.status == 200) {
+    window.location.href = '/index.html';
+   }
+  };
+  var comment = {
+      comment: {
+      commentText: document.getElementById('commentText').value,
+      isImportant: document.getElementById('isImportant').checked
+      }
+  };
+    xhttp.open('PUT',apiEndpointBase + "/" + messageId, true);
+    xhttp.setRequestHeader('Content-Type','application/json');
+    xhttp.send(JSON.stringify(comment)); 
+
+  return false;
+}
 getMessage();

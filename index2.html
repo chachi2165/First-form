@@ -7,7 +7,7 @@
     <section class="container">
       <h1 class="page-header">
         Code School Message Board
-        <button class="btn btn-primary pull-right" onclick="myFunction()" type="button" onclick="myRow()">Refresh</button>
+        <button class="btn btn-primary pull-right" type="button">Refresh</button>
         <button class="btn btn-success pull-right" type="button" onclick="addMessage()">Add a message</button>
         <input type="checkbox" id='importantChkBox' onclick="getImportant()">Important</button>
         <!--<button class="btn btn-success pull-right" type="checkbox" onclick="notImportant()">Regular</button>-->
@@ -15,7 +15,16 @@
           <option value="all"> All</option>
         </select>
 </h1>
-      <section id="messagesContainer"></section>        
+      <section id="messagesContainer"></section>
+        <table class="start" id="myTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Message</th>
+                    <th>Created on</th>
+                </tr>
+            </thead>
+        </table>   
     </section>
     <div id="loading">
       <div class="loading-text">
@@ -25,6 +34,6 @@
     </div>
     <script type="text/javascript" src="js/moment.js"></script>
     <script type="text/javascript" src="js/shared.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/index2.js"></script>
   </body>
 </html>

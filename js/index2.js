@@ -153,52 +153,63 @@ function showMessages(messages) {
   // clear the existing messages
   messagesContainer.innerHTML = '';
 
-  messages.forEach(function(message) {
-    var messageDiv = document.createElement("div");
-    var messageTextDiv = document.createElement("div");
-    var messageDateDiv = document.createElement("p");
+  var table= document.getElementById("myTable");
 
-    // message header
-    var messageHtml = '<p>' + message.createdBy +
-      (message.isImportant ? '&#160;<span class="label label-danger">IMPORTANT</span>' : '') + 
-      '<button class="btn btn-danger pull-right" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>' +
-      '<button class="btn btn-primary pull-right" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' +
-    '</p>';
+  messages.forEach(function(message) {
+    var row = table.insertRow(0);
+    var cell = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell.innerHTML = message.commentText + message.isImportant;
+    cell2.innerHTML = message.createdBy;
+    cell3.innerHTML = message.updatedAt;
+    cell4.innerHTML = '';
+
 
     // // message header
-    // var tableHeader = '<table class="start"><tr><th class="message">Message</th><th class="author">Author</th><th class="actions">Actions</th></tr>';
+    // var tableHeader =
+    // '<table class="start"><tr><th class="message">Message</th><th class="author">Author</th><th class="actions">Actions</th></tr>';
     // '<button class="btn btn-danger pull-right" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>' +
     // '<button class="btn btn-primary pull-right" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' +
     // '</p>';
-    // //messsages for each
 
-    // var messageData = document.createElement("table");
-    // var messageText = document.createElement("");
-    // var messageDate = document.createElement("");
+    // messages.forEach(function(message) {
+    // var messageDiv = document.createElement("div");
+    // var messageTextDiv = document.createElement("div");
+    // var messageDateDiv = document.createElement("p");
 
-    // message text
-    messageTextDiv.innerHTML = message.commentText;
+    // // message header
+    // var messageHtml = '<p>' + message.createdBy +
+    //   (message.isImportant ? '&#160;<span class="label label-danger">IMPORTANT</span>' : '') + 
+    //   '<button class="btn btn-danger pull-right" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>' +
+    //   '<button class="btn btn-primary pull-right" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' +
+    // '</p>';
 
-    // message date
-    if (message.createdAt === message.updatedAt) {
-      messageDateDiv.innerHTML = 'Created ' + moment(message.createdAt).fromNow();
-    } else {
-      messageDateDiv.innerHTML = 'Last updated ' + moment(message.updatedAt).fromNow();
-    }
+    // // message text
+    // messageTextDiv.innerHTML = message.commentText;
 
-    messageDateDiv.classList.add('date');
+    // // message date
+    // if (message.createdAt === message.updatedAt) {
+    //   messageDateDiv.innerHTML = 'Created ' + moment(message.createdAt).fromNow();
+    // } else {
+    //   messageDateDiv.innerHTML = 'Last updated ' + moment(message.updatedAt).fromNow();
+    // }
 
-    // update message div
-    messageDiv.classList.add('message');
-    messageDiv.innerHTML = messageHtml;
-    messageDiv.appendChild(messageTextDiv);
-    messageDiv.appendChild(messageDateDiv);
+    // messageDateDiv.classList.add('date');
 
-    messagesContainer.appendChild(messageDiv);
+    // // update message div
+    // messageDiv.classList.add('message');
+    // messageDiv.innerHTML = messageHtml;
+    // messageDiv.appendChild(messageTextDiv);
+    // messageDiv.appendChild(messageDateDiv);
+
+    // messagesContainer.appendChild(messageDiv);
   });
 }
 
 // This will make sure that all messages are loaded when page is loaded!
 getAllMessages();
 byName();
+
 
