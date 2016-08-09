@@ -164,14 +164,6 @@ function showMessages(messages) {
       '<button class="btn btn-danger pull-right" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>' +
       '<button class="btn btn-primary pull-right" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' +
     '</p>';
-
-    // // message header
-    // var tableHeader = '<table class="start"><tr><th class="message">Message</th><th class="author">Author</th><th class="actions">Actions</th></tr>';
-    // '<button class="btn btn-danger pull-right" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>' +
-    // '<button class="btn btn-primary pull-right" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' +
-    // '</p>';
-    // //messsages for each
-
     // var messageData = document.createElement("table");
     // var messageText = document.createElement("");
     // var messageDate = document.createElement("");

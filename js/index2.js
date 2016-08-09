@@ -1,4 +1,4 @@
-function myFunction() {
+function myRefresh() {
     alert("The page is now going to refresh!");
     location.reload();
 }
@@ -115,12 +115,12 @@ function deleteMessage(messageId) {
     xhttp.setRequestHeader('Content-Type','application/json');
     xhttp.send();
   } else {
-    window.location.href = '/';
+    window.location.href = '/index2.html';
   }
 
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      window.location.href = '/';
+      window.location.href = '/index2.html';
     }
   };
 
@@ -153,18 +153,28 @@ function showMessages(messages) {
   // clear the existing messages
   messagesContainer.innerHTML = '';
 
-  var table= document.getElementById("myTable");
+  var table = document.getElementById("myTable");
+  table.innerHTML = '';
 
   messages.forEach(function(message) {
-    var row = table.insertRow(0);
+    var row = table.insertRow(table.rows.length);
     var cell = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
-    cell.innerHTML = message.commentText + message.isImportant;
+    cell.innerHTML = message.commentText + (message.isImportant ? '&#160;<span class="label label-danger">IMPORTANT</span>' : '') ;
     cell2.innerHTML = message.createdBy;
     cell3.innerHTML = message.updatedAt;
-    cell4.innerHTML = '';
+    if (message.createdAt === message.updatedAt) {
+      cell3.innerHTML = 'Created ' + moment(message.createdAt).fromNow();
+    } else {
+      cell3.innerHTML = 'Last updated ' + moment(message.updatedAt).fromNow();
+    }
+    cell3.className = "date";
+    cell4.innerHTML = '<button class="btn btn-danger pull-right" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>' +
+    '<button class="btn btn-primary pull-right" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' +
+    '</p>';
+
 
 
     // // message header
@@ -179,7 +189,7 @@ function showMessages(messages) {
     // var messageTextDiv = document.createElement("div");
     // var messageDateDiv = document.createElement("p");
 
-    // // message header
+    // message header
     // var messageHtml = '<p>' + message.createdBy +
     //   (message.isImportant ? '&#160;<span class="label label-danger">IMPORTANT</span>' : '') + 
     //   '<button class="btn btn-danger pull-right" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>' +
